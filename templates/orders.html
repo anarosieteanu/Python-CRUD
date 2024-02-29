@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+
+<h1>{% block title %}Comenzi{% endblock %}</h1>
+
+{% block content %}
+<div class="container rounded-lg mx-auto my-8 p-8 bg-gray-100 text-black">
+  <h1 class="text-2xl font-bold mb-6">Comenzi</h1>
+
+  <!-- Table -->
+  <div class="border-2 rounded-lg border-gray-700">
+  <table class="min-w-full text-left text-sm text-black font-semibold">
+    <thead class="border-b-2 font-medium border-gray-700">
+      <tr>
+        <th scope="col" class="px-6 py-4">Actions</th>
+        <th scope="col" class="px-6 py-4">Id_comanda</th>
+        <th scope="col" class="px-6 py-4">Nume</th>
+        <th scope="col" class="px-6 py-4">Denumire</th>
+        <th scope="col" class="px-6 py-4">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr
+        class="border-b border-gray-700 transition duration-300 ease-in-out">
+        <td>
+            <div class="flex justify-center gap-1 pr-2">
+                <a href="/orders/update/{{order.id_comanda}}"
+                    class="focus:outline-none text-base text-black bg-orange-400 hover:bg-yellow-600 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg p-2 dark:focus:ring-yellow-900">&#9998;</a>
+
+                <a href="/orders/delete/{{order.id_comanda}}"
+                    class="focus:outline-none text-base text-black bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-bold rounded-lg p-2 dark:bg-red-600">&#10005;</a>
+            </div>
+        </td>
+        <td class="whitespace-nowrap px-6 py-4 font-medium">{{order.id_comanda}}</td>
+        <td class="whitespace-nowrap px-6 py-4">{{order.nume + ' ' + order.prenume}}</td>
+        <td class="whitespace-nowrap px-6 py-4 font-medium">{{order.denumire}}</td>
+        <td class="whitespace-nowrap px-6 py-4">{{order.status}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+  <!-- Add Form -->
+  <div class="mb-10"></div>
+  <div class="w-full mx-auto max-w-lg border rounded-lg">
+
+    <form action="/orders/" method="POST"
+      class="bg-transparent flex gap-5 flex-col shadow-md rounded px-8 py-8 mb-0">
+      <h1 class="text-xl text-center font-bold">Comanda noua</h1>
+      <div>
+        <label class="block text-sm font-bold mb-1" for="clients">
+          Client
+        </label>
+        <select id="clients" name="id_client"
+          class="flex w-full rounded-lg border text-gray-400 bg-white px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white">
+          {% for option in options.clients %}
+          <option value="{{ option.id }}">{{ option.label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+
+        <label class="block text-sm font-bold mb-1" for="product">
+          Produs
+        </label>
+        <select id="product" name="id_produs"
+          class="flex w-full rounded-lg border text-gray-400 bg-white px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white">
+          {% for option in options.products %}
+          <option value="{{ option.id }}">{{ option.label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold mb-1" for="status">
+          Status
+        </label>
+        <select id="status" name="status"
+          class="flex w-full rounded-lg border text-gray-400 bg-white px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white">
+          {% for option in options.status %}
+          <option value="{{ option }}">{{ option }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button
+        class="w-full mt-3 bg-gray-400 hover:bg-gray-600 hover:text-pink-400 text-pink-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+        type="submit">
+        Adauga Comanda
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

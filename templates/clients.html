@@ -1,0 +1,103 @@
+{% extends 'index.html' %}
+
+<h1>{% block title %}Clienti{% endblock %}</h1>
+
+{% block content %}
+<div class="container rounded-lg mx-auto my-8 p-8 bg-gray-100 text-black">
+    <h1 class="text-2xl font-bold mb-6">Clienti</h1>
+
+    <!-- Table -->
+    <div class="border-2 rounded-lg border-gray-700">
+
+    <table class="min-w-full text-left text-sm text-black font-semibold">
+        <thead class="border-b-2 border-gray-700 font-medium">
+            <tr>
+                <th scope="col" class="px-6 py-4">Actions</th>
+                <th scope="col" class="px-6 py-4">Id_client</th>
+                <th scope="col" class="px-6 py-4">Nume</th>
+                <th scope="col" class="px-6 py-4">Prenume</th>
+                <th scope="col" class="px-6 py-4">Telefon</th>
+                <th scope="col" class="px-6 py-4">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr class="border-b border-gray-700 transition duration-300 ease-in-out">
+                <td>
+                    <div class="flex justify-center gap-1 pr-2">
+                        <a href="/clients/update/{{client.id_client}}"
+                            class="focus:outline-none text-base text-black bg-orange-400 hover:bg-yellow-600 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg p-2 dark:focus:ring-yellow-900">&#9998;</a>
+
+                        <a href="/clients/delete/{{client.id_client}}"
+                            class="focus:outline-none text-base text-black bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-bold rounded-lg p-2 dark:bg-red-600">&#10005;</a>
+                    </div>
+                </td>
+                <td class="whitespace-nowrap px-6 py-4 font-medium">{{client.id_client}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{client.nume}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{client.prenume}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{client.nr_telefon}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{client.email}}</td>
+
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+    <!-- Add Form -->
+    <div class="mb-10"></div>
+    <div class="w-full mx-auto max-w-lg border rounded-lg">
+        <form action="/clients/" method="POST"
+            class="bg-transparent flex gap-5 flex-col shadow-md rounded px-8 py-8 mb-0">
+            <h1 class="text-xl text-center font-bold">Client nou</h1>
+
+            <div>
+                <label class="block text-sm font-bold mb-1" for="nume">
+                    Nume
+                </label>
+                <input name="nume" required
+                    class="flex w-full rounded-lg border bg-white px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+                    id="nume" placeholder="Blake">
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold mb-1" for="prenume">
+                    Prenume
+                </label>
+                <input name="prenume" required
+                    class="flex w-full rounded-lg border bg-white px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+                    id="prenume" placeholder="Carter">
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold mb-1" for="nr_telefon">
+                    Telefon
+                </label>
+                <input name="nr_telefon" required
+                    class="flex w-full rounded-lg border bg-white px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+                    id="nr_telefon" placeholder="07">
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold mb-1" for="email">
+                    Email
+                </label>
+                <input name="email" type="email" required
+                    class="flex w-full rounded-lg border bg-white px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+                    id="email" placeholder="blake@carter.com">
+            </div>
+
+
+            <button
+                class="w-full mt-3 bg-gray-400 hover:bg-gray-600 hover:text-pink-400 text-pink-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+                type="submit">
+                Adauga Client
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

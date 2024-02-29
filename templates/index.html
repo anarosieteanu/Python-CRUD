@@ -1,0 +1,33 @@
+</html>
+
+<!doctype html>
+<html lang="en">
+
+</html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <title>{% block title %}{% endblock %} py_v2</title>
+</head>
+
+<body class="bg-gray-600/30">
+  <main>
+    <nav class="bg-teal-500 p-4 font-semibold">
+      <div class="container mx-auto flex flex-col font-bold text-lg gap-2 justify-between items-center">
+        <a href="/" class="text-black hover:underline hover:underline-offset-1 decoration-2 decoration-pink-900 hover:text-pink-900 text-2xl">Home</a>
+        <a href="{{ url_for('clients') }}" class="hover:underline hover:underline-offset-1 decoration-2  decoration-pink-900 hover:text-pink-900 text-black">Clienti</a>
+        <a href="{{ url_for('orders') }}" class="hover:underline hover:underline-offset-1 decoration-2 decoration-pink-900 hover:text-pink-900 text-black">Comenzi</a>
+        <a href="{{ url_for('products') }}" class="hover:underline hover:underline-offset-1 decoration-2 decoration-pink-900 hover:text-pink-900 text-black">Produse</a>
+      </div>
+    </nav>
+  
+    <div>
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+</body>

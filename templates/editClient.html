@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+
+<h1>{% block title %}Edit{% endblock %}</h1>
+
+{% block content %}
+<div class="mb-10"></div>
+<div class="bg-white text-black w-full mx-auto max-w-lg border rounded-lg">
+  <form action="/{{url}}/update/{{client.id_client}}" method="POST"
+    class="bg-transparent flex gap-5 flex-col shadow-md rounded px-8 py-8 mb-0">
+    <h1 class="text-xl text-center text-pink-800 font-bold">Editeaza client</h1>
+    <div>
+        <label class="block text-sm font-bold mb-1" for="nume">
+          Nume
+        </label>
+        <input name="nume" required value={{client.nume}}
+          class="flex w-full rounded-lg border bg-gray-200 px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+          id="nume" placeholder="Blake">
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold mb-1" for="prenume">
+          Prenume
+        </label>
+        <input name="prenume" required value={{client.prenume}}
+          class="flex w-full rounded-lg border bg-gray-200 px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+          id="prenume" placeholder="Carter">
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold mb-1" for="nr_telefon">
+          Telefon
+        </label>
+        <input name="nr_telefon" required value={{client.nr_telefon}}
+          class="flex w-full rounded-lg border bg-gray-200 px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+          id="nr_telefon" placeholder="07">
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold mb-1" for="email">
+          Email
+        </label>
+        <input name="email" type="email" required value={{client.email}}
+          class="flex w-full rounded-lg border bg-gray-200 px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+          id="email" placeholder="blake@carter.com">
+      </div>
+
+    <div class="flex gap-2 items-center">
+      <button
+        class="w-full mt-3 bg-gray-400 hover:bg-gray-600 hover:text-pink-400 text-pink-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+        type="submit">
+        Editeaza Client
+      </button>
+      <a href='/{{url}}'
+        class="w-full mt-3 bg-gray-400 text-center hover:bg-gray-600 hover:text-pink-400 text-pink-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
+        Back
+      </a>
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}

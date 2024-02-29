@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+
+<h1>{% block title %}Produse{% endblock %}</h1>
+
+{% block content %}
+<div class="container rounded-lg mx-auto my-8 p-8 bg-gray-100 text-black">
+    <h1 class="text-2xl font-bold mb-6">Produse</h1>
+
+    <div class="border-2 rounded-lg border-gray-700">
+    <table class="min-w-full text-left text-sm text-black font-semibold">
+        <thead class="border-b-2 font-medium border-gray-700">
+            <tr>
+                <th scope="col" class="px-6 py-4">Actions</th>
+                <th scope="col" class="px-6 py-4">Id_produs</th>
+                <th scope="col" class="px-6 py-4">Denumire</th>
+                <th scope="col" class="px-6 py-4">Pret</th>
+                <th scope="col" class="px-6 py-4">Stoc</th>
+                <th scope="col" class="px-6 py-4">Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr
+                class="border-b transition border-gray-700 duration-300 ease-in-out ">
+                <td>
+                    <div class="flex justify-center gap-1 pr-2">
+                        <a href="/products/update/{{product.id_produs}}"
+                            class="focus:outline-none text-base text-black bg-orange-400 hover:bg-yellow-600 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg p-2 dark:focus:ring-yellow-900">&#9998;</a>
+
+                        <a href="/products/delete/{{product.id_produs}}"
+                            class="focus:outline-none text-base text-black bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-bold rounded-lg p-2 dark:bg-red-600">&#10005;</a>
+                    </div>
+                </td>
+                <td class="whitespace-nowrap px-6 py-4 font-medium">{{product.id_produs}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{product.denumire}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{product.pret}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{product.stoc}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{product.data_primire}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+
+
+
+    <!-- Add Form -->
+    <div class="mb-10"></div>
+    <div class="w-full mx-auto max-w-lg border rounded-lg">
+        <form action="/products/" method="POST"
+            class="bg-transparent flex gap-5 flex-col shadow-md rounded px-8 py-8 mb-0">
+            <h1 class="text-xl text-center font-bold">Produs nou</h1>
+
+            <div>
+                <label class="block text-sm font-bold mb-1" for="denumire">
+                    Denumire
+                </label>
+                <input name="denumire" required
+                    class="flex w-full rounded-lg border bg-white px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+                    id="denumire" placeholder="Pen">
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold mb-1" for="pret">
+                    Pret
+                </label>
+                <input name="pret" required inputmode="numeric"
+                    class="flex w-full rounded-lg border bg-white px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+                    id="pret" placeholder="150 (lei)">
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold mb-1" for="stoc">
+                    Stoc
+                </label>
+                <input name="stoc" required inputmode="numeric"
+                    class="flex w-full rounded-lg border bg-white px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+                    id="stoc" placeholder="50 (buc)">
+            </div>
+
+            <button
+                class="w-full mt-3 bg-gray-400 hover:bg-gray-600 hover:text-pink-400 text-pink-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+                type="submit">
+                Adauga produs
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

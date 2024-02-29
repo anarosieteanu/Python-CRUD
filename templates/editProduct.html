@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+
+<h1>{% block title %}Edit{% endblock %}</h1>
+
+{% block content %}
+<div class="mb-10"></div>
+<div class="bg-white text-black w-full mx-auto max-w-lg border rounded-lg">
+  <form action="/{{url}}/update/{{product.id_produs}}" method="POST"
+    class="bg-transparent flex gap-5 flex-col shadow-md rounded px-8 py-8 mb-0">
+    <h1 class="text-xl text-center text-pink-800 font-bold">Editeaza produs</h1>
+    <div>
+        <label class="block text-sm font-bold mb-1" for="denumire">
+          Denumire
+        </label>
+        <input name="denumire" required  value={{product.denumire}}
+          class="flex w-full rounded-lg border bg-gray-200 px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+          id="denumire" placeholder="Pen">
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold mb-1" for="pret">
+          Pret
+        </label>
+        <input name="pret" required inputmode="numeric" value={{product.pret}}
+          class="flex w-full rounded-lg border bg-gray-200 px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+          id="pret" placeholder="150 (lei)">
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold mb-1" for="stoc">
+          Stoc
+        </label>
+        <input name="stoc" required inputmode="numeric" value={{product.stoc}}
+          class="flex w-full rounded-lg border bg-gray-200 px-3 py-2 text-sm outline-0 transition-colors duration-500 ease-out focus-visible:ring-1 focus-visible:ring-white"
+          id="stoc" placeholder="50 (buc)">
+      </div>
+
+    <div class="flex gap-2 items-center">
+      <button
+        class="w-full mt-3 bg-gray-400 hover:bg-gray-600 hover:text-pink-400 text-pink-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+        type="submit">
+        Editeaza Produs
+      </button>
+      <a href='/{{url}}'
+        class="w-full mt-3 text-center bg-gray-400 hover:bg-gray-600 hover:text-pink-400 text-pink-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
+        Back
+      </a>
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}

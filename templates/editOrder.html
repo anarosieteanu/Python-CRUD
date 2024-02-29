@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+<h1>{% block title %}Edit{% endblock %}</h1>
+
+{% block content %}
+
+<div class="mb-10"></div>
+<div class="bg-white text-black w-full mx-auto max-w-lg border rounded-lg">
+
+  <form action="/{{url}}/update/{{order.id_comanda}}" method="POST"
+    class="bg-transparent flex gap-5 flex-col shadow-md rounded px-8 py-8 mb-0">
+    <h1 class="text-xl text-center text-pink-800 font-bold">Editeaza comanda</h1>
+
+    <div>
+        <label class="block text-sm font-bold mb-1" for="clients">
+          Client
+        </label>
+        <select id="clients" name="id_client"
+          class="bg-white text-gray-500 border border-gray-300 text-sm rounded-lg focus:border-white block w-full p-2.5">
+          {% for option in options.clients %}
+          <option {%if option.id==order.id_client %} selected {%endif%} value="{{ option.id }}">{{ option.label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+
+        <label class="block text-sm font-bold mb-1" for="product">
+          Produs
+        </label>
+        <select id="product" name="id_produs"
+          class="bg-white text-gray-500 border border-gray-300 text-sm rounded-lg focus:border-white block w-full p-2.5">
+          {% for option in options.products %}
+          <option {%if option.id==order.id_produs %} selected {%endif%} value="{{ option.id }}">{{ option.label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-bold mb-1" for="status">
+          Status
+        </label>
+        <select id="status" name="status"
+          class="bg-white text-gray-500 border border-gray-300 text-sm rounded-lg focus:border-white block w-full p-2.5">
+          {% for option in options.status %}
+          <option {%if option==order.status %} selected {%endif%} value="{{ option }}">{{ option }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+    <div class="flex gap-2 items-center">
+      <button
+        class="w-full mt-3 bg-gray-400 hover:bg-gray-600 hover:text-pink-400 text-pink-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+        type="submit">
+        Editeaza Comanda
+      </button>
+      <a href='/{{url}}'
+        class="w-full mt-3 text-center bg-gray-400 hover:bg-gray-600 hover:text-pink-400 text-pink-900 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">
+        Back
+      </a>
+    </div>
+  </form>
+</div>
+{% endblock %}
